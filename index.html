@@ -1,0 +1,185 @@
+import React, { useState } from 'react';
+import { Search, ShoppingCart, User, Upload, ShieldCheck, BookOpen, BarChart2, DollarSign, LogOut } from 'lucide-react';
+
+export default function BihosMediaApp() {
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
+      {/* 1. NAVBAR TOP */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          {/* Logo Bihos.Media */}
+          <div className="flex items-center gap-2 cursor-pointer">
+            <div className="bg-emerald-600 text-white p-2 rounded-xl font-bold text-xl tracking-wider">
+              BM
+            </div>
+            <span className="text-2xl font-extrabold text-emerald-800 tracking-tight">
+              Bihos<span className="text-emerald-500">.Media</span>
+            </span>
+          </div>
+
+          {/* Search Bar */}
+          <div className="flex-1 max-w-xl relative">
+            <input
+              type="text"
+              placeholder="Cari buku, penulis, atau ISBN..."
+              className="w-full bg-gray-100 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+            />
+            <button className="absolute right-1 top-1/2 -translate-y-1/2 bg-emerald-600 text-white p-1.5 rounded-full hover:bg-emerald-700">
+              <Search size={16} />
+            </button>
+          </div>
+
+          {/* Nav Links & Actions */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+            <a href="#kategori" className="hover:text-emerald-600">Kategori</a>
+            <a href="#panduan" className="hover:text-emerald-600">Panduan</a>
+            <a href="#tentang" className="hover:text-emerald-600">Tentang Kami</a>
+            <a href="#kontak" className="hover:text-emerald-600">Hubungi Kami</a>
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <button className="relative p-2 text-gray-600 hover:text-emerald-600">
+              <ShoppingCart size={22} />
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">0</span>
+            </button>
+            <div className="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-full font-semibold text-sm">
+              <User size={18} />
+              <span>Sohib Bihos</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* MAIN CONTENT AREA */}
+      <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        {/* 2. SIDEBAR DASHBOARD PENULIS */}
+        <aside className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm h-fit">
+          <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Dashboard Penulis</h2>
+          <nav className="space-y-1">
+            <button 
+              onClick={() => setActiveTab('dashboard')}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition ${
+                activeTab === 'dashboard' ? 'bg-emerald-600 text-white shadow-md' : 'text-gray-600 hover:bg-gray-100'
+              }`}
+            >
+              <BarChart2 size={18} /> Dashboard
+            </button>
+            <button 
+              onClick={() => setActiveTab('upload')}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition ${
+                activeTab === 'upload' ? 'bg-emerald-600 text-white shadow-md' : 'text-gray-600 hover:bg-gray-100'
+              }`}
+            >
+              <Upload size={18} /> Upload Naskah
+            </button>
+            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100">
+              <ShieldCheck size={18} /> Daftar Hak Cipta (HAKI)
+            </button>
+            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100">
+              <BookOpen size={18} /> Naskah Saya
+            </button>
+            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100">
+              <DollarSign size={18} /> Laporan Royalty
+            </button>
+          </nav>
+
+          <hr className="my-6 border-gray-100" />
+          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50">
+            <LogOut size={18} /> Keluar
+          </button>
+        </aside>
+
+        {/* 3. MAIN DASHBOARD CONTENT */}
+        <main className="lg:col-span-3 space-y-8">
+          
+          {/* BANNER PROMO TERBIT */}
+          <div className="bg-gradient-to-r from-emerald-700 to-teal-800 rounded-3xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="space-y-3">
+              <span className="bg-emerald-500/30 text-emerald-200 text-xs px-3 py-1 rounded-full border border-emerald-400/30 font-semibold">
+                PROMO TERBIT BIHOS.MEDIA
+              </span>
+              <h1 className="text-2xl md:text-3xl font-extrabold">ISBN + HAKI + QRCBN</h1>
+              <p className="text-emerald-100 text-sm max-w-md">
+                Terbitkan karya milikmu secara resmi, aman secara hukum, dan jangkau jutaan pembaca di seluruh Indonesia.
+              </p>
+              <div className="flex gap-4 pt-2">
+                <span className="text-xl font-bold bg-white text-emerald-800 px-4 py-2 rounded-xl shadow">
+                  Rp 450.000 <span className="text-xs text-gray-500 font-normal">/ Paket ISBN</span>
+                </span>
+              </div>
+            </div>
+            <button className="bg-yellow-400 hover:bg-yellow-300 text-emerald-950 font-bold px-6 py-3 rounded-xl shadow-md whitespace-nowrap transition">
+              Terbitkan Sekarang
+            </button>
+          </div>
+
+          {/* STATS SUMMARY */}
+          <div>
+            <h2 className="text-xl font-bold mb-4">Ringkasan Penulis</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                <div className="p-3 bg-emerald-100 text-emerald-600 rounded-xl"><BookOpen size={24} /></div>
+                <div>
+                  <p className="text-xs text-gray-400 font-medium">Jumlah Naskah</p>
+                  <p className="text-2xl font-extrabold">4 Naskah</p>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                <div className="p-3 bg-blue-100 text-blue-600 rounded-xl"><ShoppingCart size={24} /></div>
+                <div>
+                  <p className="text-xs text-gray-400 font-medium">Buku Terjual</p>
+                  <p className="text-2xl font-extrabold">248 Eks</p>
+                </div>
+              </div>
+
+              <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4">
+                <div className="p-3 bg-amber-100 text-amber-600 rounded-xl"><DollarSign size={24} /></div>
+                <div>
+                  <p className="text-xs text-gray-400 font-medium">Saldo Royalti</p>
+                  <p className="text-2xl font-extrabold text-emerald-600">Rp 1.450.000</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* KATALOG BUKU TERLARIS */}
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Buku Terlaris Bihos.Media</h2>
+              <a href="#" className="text-sm font-bold text-emerald-600 hover:underline">Lihat Semua</a>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {[
+                { title: '40 Hari Menuju Impian', price: 'Rp 87.000', img: 'https://via.placeholder.com/150x220' },
+                { title: 'Pembelajaran Etika Digital', price: 'Rp 97.750', img: 'https://via.placeholder.com/150x220' },
+                { title: 'Rahasia Pujangga', price: 'Rp 65.000', img: 'https://via.placeholder.com/150x220' },
+                { title: 'Catatan Sang Musafir', price: 'Rp 102.000', img: 'https://via.placeholder.com/150x220' }
+              ].map((book, idx) => (
+                <div key={idx} className="bg-white rounded-2xl p-3 border border-gray-100 shadow-sm hover:shadow-md transition">
+                  <div className="h-48 bg-gray-200 rounded-xl mb-3 overflow-hidden">
+                    <img src={book.img} alt={book.title} className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="font-bold text-sm line-clamp-2 text-gray-800">{book.title}</h3>
+                  <p className="text-emerald-600 font-extrabold text-sm mt-2">{book.price}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+      {/* FOOTER */}
+      <footer className="bg-white border-t border-gray-200 mt-16 py-8">
+        <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
+          <p>© 2026 Bihos.Media Group. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
